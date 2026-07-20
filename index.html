@@ -12,7 +12,7 @@
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body { margin:0; color:var(--ink); background:var(--paper); font-family:"DM Sans",sans-serif; line-height:1.55; }
-    img { display:block; max-width:100%; }
+    img { display:block; max-width:100%; height:auto; object-fit:contain; }
     .wrap { width:min(1200px, calc(100% - 48px)); margin:auto; }
     .eyebrow { margin:0 0 16px; color:var(--orange); font:500 11px/1 "DM Mono",monospace; letter-spacing:.13em; text-transform:uppercase; }
     h1,h2,h3,p { margin-top:0; }
@@ -31,13 +31,14 @@
     .hero-sub strong { color:var(--sun); font-weight:500; }
     .button { display:inline-flex; align-items:center; gap:18px; margin-top:38px; padding:14px 18px; border:1px solid var(--paper); color:var(--paper); text-decoration:none; font:500 11px/1 "DM Mono",monospace; text-transform:uppercase; letter-spacing:.08em; transition:.2s; }
     .button:hover { color:var(--ink); background:var(--sun); border-color:var(--sun); }
-    .hero-image { align-self:stretch; min-height:500px; position:relative; margin-top:25px; }
-    .hero-image img { width:100%; height:100%; min-height:500px; object-fit:cover; object-position:center; filter:saturate(1.08) contrast(1.06); }
+    .hero-image { align-self:center; position:relative; margin-top:25px; }
+    .hero-image img { width:100%; height:auto; object-fit:contain; filter:saturate(1.08) contrast(1.06); }
     .hero-image::after { content:""; position:absolute; inset:0; background:linear-gradient(145deg,rgba(0,117,138,.18),transparent 45%,rgba(238,112,27,.25)); mix-blend-mode:screen; }
     .vertical-label { position:absolute; right:-1.6em; bottom:40px; z-index:2; writing-mode:vertical-rl; color:var(--paper); font:500 10px/1 "DM Mono",monospace; letter-spacing:.16em; text-transform:uppercase; }
 
     .intro { padding:clamp(80px,13vw,180px) 0; background:var(--paper); }
     .intro-grid { display:grid; grid-template-columns:1fr 1.45fr; gap:10%; }
+    .intro-grid > .eyebrow { align-self:start; aspect-ratio:2 / 3; margin:0; padding:clamp(24px,3vw,42px); color:#fff7ea; text-shadow:0 1px 8px rgba(18,21,17,.8); background-color:#8ac9df; background-image:url("HEPPFotografie_HH.jpg"); background-size:contain; background-repeat:no-repeat; background-position:center; }
     .intro p { max-width:650px; font-size:clamp(1.25rem,2vw,1.75rem); line-height:1.45; }
     .intro p strong { color:var(--red); font-weight:500; }
     .rule { margin-top:62px; border-top:1px solid var(--line); padding-top:15px; display:flex; justify-content:space-between; color:var(--moss); font:500 10px/1 "DM Mono",monospace; letter-spacing:.1em; text-transform:uppercase; }
@@ -47,11 +48,9 @@
     .works h2 { margin:0; }
     .works-note { max-width:260px; margin:0; font-size:.95rem; }
     .works .eyebrow { color:var(--sun); }
-    .gallery { display:grid; grid-template-columns:1.28fr .72fr .72fr; grid-template-rows:330px 330px; gap:14px; }
-    .work { overflow:hidden; position:relative; background:var(--ink); }
-    .work:first-child { grid-row:span 2; }
-    .work img { height:100%; width:100%; object-fit:cover; transition:transform .5s ease; }
-    .work:hover img { transform:scale(1.045); }
+    .gallery { display:grid; grid-template-columns:1.28fr .72fr .72fr; gap:14px; align-items:start; }
+    .work { position:relative; margin:0; background:var(--ink); }
+    .work img { width:100%; height:auto; object-fit:contain; }
     .work figcaption { position:absolute; left:0; bottom:0; padding:11px 13px; background:var(--sun); color:var(--ink); font:500 10px/1 "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; }
     .book img { object-position:top center; }
 
@@ -76,7 +75,7 @@
     .contact p { max-width:410px; margin:5px 0 0; font-size:1.15rem; }
     .contact a { color:var(--sun); text-decoration-color:rgba(237,174,32,.35); text-underline-offset:4px; }
     footer { display:flex; justify-content:space-between; gap:20px; margin-top:120px; padding-top:18px; border-top:1px solid rgba(255,255,255,.22); color:rgba(255,255,255,.55); font:400 10px/1 "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; }
-    @media (max-width:760px) { .hero-inner,.intro-grid,.contact-top { grid-template-columns:1fr; } .hero-image { min-height:360px; margin:0; } .hero-image img { min-height:360px; } .hero-copy { padding-top:65px; } .gallery { grid-template-columns:1fr 1fr; grid-template-rows:310px 220px; } .work:first-child { grid-column:span 2; grid-row:auto; } .works-header { display:block; } .works-note { margin-top:20px; } .events { grid-template-columns:1fr; } .event + .event { padding-left:0; border-left:0; } .event { padding:28px 0; } .contact { padding-top:75px; } footer { margin-top:80px; } }
+    @media (max-width:760px) { .hero-inner,.intro-grid,.contact-top { grid-template-columns:1fr; } .hero-image { margin:0; } .hero-copy { padding-top:65px; } .gallery { grid-template-columns:1fr 1fr; } .work:first-child { grid-column:span 2; } .works-header { display:block; } .works-note { margin-top:20px; } .events { grid-template-columns:1fr; } .event + .event { padding-left:0; border-left:0; } .event { padding:28px 0; } .contact { padding-top:75px; } footer { margin-top:80px; } }
   </style>
 </head>
 <body>
@@ -84,13 +83,13 @@
     <nav><div class="monogram"><span>H</span> Hardy Hepp</div><a href="#besichtigung">Besichtigung & Verkauf ↘</a></nav>
     <div class="hero-inner">
       <div class="hero-copy"><p class="eyebrow">Musiker · Maler</p><h1>Hardy<br><em>Hepp</em></h1><p class="hero-sub">Ein Nachlass voller Farbe, Klang und ungebändigter <strong>Vorstellungskraft.</strong></p><a class="button" href="#besichtigung">Werke entdecken <span>↘</span></a></div>
-      <div class="hero-image"><img src="hardyathome.jpg" alt="Hardy Hepp in seinem Zuhause"><span class="vertical-label">Künstlernachlass · Schweiz</span></div>
+      <div class="hero-image"><img src="HARDY-HEPP-BUCHCOVER-FRONT.jpg" alt="Hardy Hepp Bookcover"><span class="vertical-label">Künstlernachlass · Schweiz</span></div>
     </div>
   </header>
   <main>
     <section class="intro"><div class="wrap"><div class="intro-grid"><p class="eyebrow">Ein Leben für die Kunst</p><div><h2>Aus dem <em>Eigenen</em> schöpfen.</h2><p>Hardy Hepp war Musiker und Maler — ein Künstler mit einem unverwechselbaren Blick auf die Welt. Sein Nachlass bewahrt Werke voller <strong>Rhythmus, Humor und leuchtender Farbe.</strong></p></div></div><div class="rule"><span>Hardy Hepp · 1944–2026</span><span>Nachlass & ausgewählte Werke</span></div></div></section>
     <section class="works"><div class="wrap"><div class="works-header"><div><p class="eyebrow">Ausgewählte Werke</p><h2>Farbe als<br>Sprache.</h2></div><p class="works-note">Malerei, Fotografie und Erinnerungsstücke aus einem reichhaltigen künstlerischen Leben.</p></div><div class="gallery"><figure class="work"><img src="painting1.avif" alt="Gemälde von Hardy Hepp"><figcaption>Malerei · ohne Titel</figcaption></figure><figure class="work"><img src="painting2.jpeg" alt="Abstraktes Gemälde in Orange und Blau"><figcaption>Malerei · Landschaft</figcaption></figure><figure class="work book"><img src="HARDY-HEPP-BUCHCOVER-FRONT.jpg" alt="Buchcover Hardy Hepp"><figcaption>Mein Leben als Musiker und Maler</figcaption></figure></div></div></section>
-    <section class="quote"><div class="wrap"><blockquote>„Farbe ist für mich kein Schmuck. Sie ist <em>Bewegung.</em>“</blockquote><cite>Hardy Hepp · aus dem Atelier</cite></div></section>
+    <section class="quote"><div class="wrap"><blockquote>„<em>Vogel oder Fisch.</em> Nurno gspühre wer ich bin und wer Du bisch.“</blockquote><cite>Hardy Hepp</cite></div></section>
     <section id="besichtigung" class="visit"><div class="wrap"><p class="eyebrow">Besichtigung & Verkauf</p><h2>Dem Werk<br>begegnen.</h2><div class="events"><article class="event"><p class="event-date">24. Oktober</p><h3>Wirkerei</h3><p>Exklusive Besichtigung der ausgestellten Werke.<br><br>14:00–18:00 Uhr</p></article><article class="event"><p class="event-date">14. November</p><h3>Wohnhaus & Atelier</h3><p>Persönlicher Einblick in sein kreatives Umfeld.<br><br>14:00–18:00 Uhr</p></article></div></div></section>
   </main>
   <section class="contact"><div class="wrap"><div class="contact-top"><div><p class="eyebrow">Kontakt</p><h2>Bleiben wir<br>in Kontakt.</h2></div><p>Bei Interesse an einem Kunstwerk oder Fragen zum Nachlass freuen wir uns über Ihre Kontaktaufnahme.<br><br><a href="mailto:kontakt@hardyhepp.ch">kontakt@hardyhepp.ch</a><br>+41 (0)00 000 00 00</p></div><footer><span>Hardy Hepp — Künstlernachlass</span><span>© 2026</span></footer></div></section>
